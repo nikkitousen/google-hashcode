@@ -40,14 +40,20 @@ int main()
 	//ifstream input ("input");
 	double lat, lon;
 	int a, b, d, t, dir;
+	int maxdis=0;
 	input >> N >> M >> T >> C >> S;
 	REP(i, N) input >> lat >> lon;
 	REP(i, M) {
 		input >> a >> b >> dir >> t >> d;
+		maxdis += d;
 		adj[a].PB(edge(b, d, t, i));
 		if(dir > 1) adj[b].PB(edge(a, d, t, i));
 		mark[i] = false;
 	}
+
+	cout << "The maximum possible score is " << maxdis << endl;
+	
+
 
 	int cc;
 	cin >> cc;
