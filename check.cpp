@@ -67,7 +67,7 @@ int main()
 			cin >> next;
 			if(kk == 0) {
 				if(next != S) {
-					cout << "ERROR: car " << cc << " starting in a wrong node\n";
+					cout << "ERROR: car " << cc << " starting in node " << next " (the initial node is " << S << ")\n";
 					return 0;
 				} else continue;
 			}
@@ -89,7 +89,8 @@ int main()
 			}
 			if(tt > T) {
 				cout << "ERROR: car " << k << " takes more time that available\n";
-				cout << "time=" << tt << " when going form " << curr << " to " << next << endl;
+				cout << "time=" << tt << " when going from " << curr << " to " << next << endl;
+				cout << "in step " << kk << endl;
 				return 0;
 			}
 			curr = next;
