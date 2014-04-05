@@ -57,6 +57,7 @@ int main()
 
 	int cc;
 	while(cin >> cc) {
+		memset(mark, 0, sizeof(mark));
 		bool skip=false;
 		if(cc > C) {
 			cout << "More cars than permitted\n";
