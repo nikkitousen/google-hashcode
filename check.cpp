@@ -67,7 +67,7 @@ int main()
 			cin >> next;
 			if(kk == 0) {
 				if(next != S) {
-					cout << "ERROR: car " << cc << " starting in node " << next " (the initial node is " << S << ")\n";
+					cout << "ERROR: car " << cc << " starting in node " << next << " (the initial node is " << S << ")\n";
 					return 0;
 				} else continue;
 			}
