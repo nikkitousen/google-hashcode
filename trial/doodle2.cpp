@@ -7,7 +7,6 @@ using namespace std;
 
 #define MAXR 800
 #define MAXC 2000
-#define MINP 90
 
 int R,C,M[MAXR][MAXC],M2[MAXR][MAXC];
 char aux[MAXC];
@@ -53,26 +52,22 @@ int precalc(){
     
     for(int i = 0;i < R;++i){
         for(int j = 0;j < C;++j){
-            if(M2[i][j] == 1) update(i + 1,j + 1,1);
+            if(M[i][j] == 1) update(i + 1,j + 1,1);
         }
     }
 }
 
-int calc(int r1, int c1, int r2, int c2){
-    return sum[r1 + 1][c1 + 1] - sum[r1 + 1][c2] - sum[r2][c1 + 1] + sum[r2][c2];
-}
-
-void copy(){
+/*void copy(){
     for(int i = 0;i < R;++i)
         for(int j = 0;j < C;++j)
             M2[i][j] = M[i][j];
-}
+}*/
 
 void method1(){
     int ans = 0,minans;
     
-    for(int P = 100;P >= 100;--P){
-        copy();
+    for(int P = 91;P >= 70;--P){
+        memset(M2,0,sizeof M2);
         precalc();
         ans = 0;
         
@@ -105,16 +100,16 @@ void method1(){
                     if(query(i - k,j - k,i + k,j + k) * 100 >= P * (2 * k + 1) * (2 * k + 1)){
                     
                         ++ans;
-                        printf("PAINTSQ %d %d %d\n",i,j,k);
+                        //printf("PAINTSQ %d %d %d\n",i,j,k);
                         
                         for(int r = i - k;r <= i + k;++r){
                             for(int c = j - k;c <= j + k;++c){
-                                if(M2[r][c] == 1){
-                                    M2[r][c] = 0;
+                                if(M[r][c] == 1 && M2[r][c] == 0){
+                                    M2[r][c] = 1;
                                     update(r + 1,c + 1,-1);
-                                }else{
+                                }else if(M[r][c] == 0){
                                     ++ans;
-                                    printf("ERASECELL %d %d\n",r,c);
+                                    //printf("ERASECELL %d %d\n",r,c);
                                 }
                             }
                         }
@@ -125,8 +120,6 @@ void method1(){
         
         printf("P = %d : %d (%d)\n",P,ans,sum[R][C]);
     }
-    
-    printf("%d\n",minans);
 }
 
 int main(){
