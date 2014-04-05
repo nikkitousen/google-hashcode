@@ -36,8 +36,8 @@ bool mark[20000];
 
 int main()
 {
-	//ifstream input ("paris_54000.txt");
-	ifstream input ("input");
+	ifstream input ("paris_54000.txt");
+	//ifstream input ("input");
 	double lat, lon;
 	int a, b, d, t, dir;
 	input >> N >> M >> T >> C >> S;
