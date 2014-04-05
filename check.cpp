@@ -89,6 +89,7 @@ int main()
 			}
 			if(tt > T) {
 				cout << "ERROR: car " << k << " takes more time that available\n";
+				cout << "time=" << tt << " when going form " << curr << " to " << next << endl;
 				return 0;
 			}
 			curr = next;
