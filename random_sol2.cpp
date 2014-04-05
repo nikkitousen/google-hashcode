@@ -66,8 +66,8 @@ void clear(){
 }
 
 int method1(){
-    for(int x = 46;x <= 47;++x){
-        for(int MAXFAIL = 30;MAXFAIL >= 30;--MAXFAIL){
+    for(int x = 40;x <= 49;++x){
+        for(int MAXFAIL = 30;MAXFAIL >= 25;--MAXFAIL){
             clear();
             seed = x;
             
@@ -85,10 +85,8 @@ int method1(){
                     
                     bool ok = (cost[ id[pos][go] ] + curt <= T);
                     
-                    /*for(int j = 1;j <= 0 && nsol >= j;++j){
-                        if(sol[i][nsol - j] == to[pos][go])
-                            ok = false;
-                    }*/
+                    if(sol[i][nsol - 1] == to[pos][go])
+                        ok = false;
                     
                     //if(to[pos][go] != pos && !visited[ id[pos][go] ] && cost[ id[pos][go] ] + curt <= T){
                     if(ok){

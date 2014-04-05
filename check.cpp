@@ -55,7 +55,8 @@ int main()
 	
 
 
-	int cc;
+	int cc,best_ans = 0;
+	
 	while(cin >> cc) {
 		memset(mark, 0, sizeof(mark));
 		bool skip=false;
@@ -107,5 +108,8 @@ int main()
 		}
 		if(!skip) cout << "Success! Answer: " << ans << endl;
 		cout << "------------------------\n";
+		best_ans = max(best_ans,ans);
 	}
+	
+	cout << best_ans << endl;
 }
