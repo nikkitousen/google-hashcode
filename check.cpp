@@ -56,51 +56,55 @@ int main()
 
 
 	int cc;
-	cin >> cc;
-	if(cc > C) {
-		cout << "More cars than permitted\n";
-		return 0;
-	}
-
-	int ans = 0;
-	REP(k, cc) {
-		int tt = 0;
-		int curr = S;
-		int moves;
-		int next;
-		cin >> moves;
-		REP(kk, moves) {
-			cin >> next;
-			if(kk == 0) {
-				if(next != S) {
-					cout << "ERROR: car " << cc << " starting in node " << next << " (the initial node is " << S << ")\n";
-					return 0;
-				} else continue;
-			}
-			bool ok = false;
-			REP(i, adj[curr].size()) {
-				if(adj[curr][i].x == next) {
-					tt += adj[curr][i].t;
-					if(!mark[adj[curr][i].idx]) {
-						mark[adj[curr][i].idx] = true;
-						ans += adj[curr][i].d;
-					}
-					ok = true;
-					break;
-				}
-			}
-			if(!ok) {
-				cout << "ERROR: Trying to go from " << curr << " to " << next << " which are not adjacent\n";
-				return 0;
-			}
-			if(tt > T) {
-				cout << "ERROR: car " << k << " takes more time that available\n";
-				cout << "time=" << tt << " when going from " << curr << " to " << next << endl;
-				cout << "in step " << kk << endl;
-				return 0;
-			}
-			curr = next;
+	while(cin >> cc) {
+		bool skip=false;
+		if(cc > C) {
+			cout << "More cars than permitted\n";
+			skip = true;
 		}
+
+		int ans = 0;
+		REP(k, cc) {
+			int tt = 0;
+			int curr = S;
+			int moves;
+			int next;
+			cin >> moves;
+			REP(kk, moves) {
+				cin >> next;
+				if(skip) continue;
+				if(kk == 0) {
+					if(next != S) {
+						cout << "ERROR: car " << cc << " starting in node " << next << " (the initial node is " << S << ")\n";
+						skip = true;
+					} else continue;
+				}
+				bool ok = false;
+				REP(i, adj[curr].size()) {
+					if(adj[curr][i].x == next) {
+						tt += adj[curr][i].t;
+						if(!mark[adj[curr][i].idx]) {
+							mark[adj[curr][i].idx] = true;
+							ans += adj[curr][i].d;
+						}
+						ok = true;
+						break;
+					}
+				}
+				if(!ok) {
+					cout << "ERROR: Trying to go from " << curr << " to " << next << " which are not adjacent\n";
+					skip = true;
+				}
+				if(tt > T) {
+					cout << "ERROR: car " << k << " takes more time that available\n";
+					cout << "time=" << tt << " when going from " << curr << " to " << next << endl;
+					cout << "in step " << kk << endl;
+					skip = true;
+				}
+				curr = next;
+			}
+		}
+		if(!skip) cout << "Success! Answer: " << ans << endl;
+		cout << "------------------------\n";
 	}
-	cout << "Success! Answer: " << ans << endl;
 }
