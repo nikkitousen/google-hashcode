@@ -85,7 +85,8 @@ int method1(){
                 //cout << sol[i].size() << " " << curt << endl;
             }else{
                 fail++;
-                if(fail == 10) break;
+                //25 28 30
+                if(fail == 4) break;
             }
         }
     }
